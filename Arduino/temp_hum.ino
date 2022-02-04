@@ -37,9 +37,11 @@ int D4 = 12;
  */
 bool started = false;
 
+int iter = 0;
+
 void setup() {
-  Serial.begin(950);
-  Serial.println("DHTxx test!");
+  Serial.begin(9600);
+//  Serial.println("DHTxx test!");
 
   dht.begin();
 
@@ -75,26 +77,29 @@ void loop() {
   float f = dht.readTemperature(true);
 
   if (isnan(h) || isnan(t) || isnan(f)) {
-    Serial.println("Failed to read from DHT sensor!");
+//    Serial.println("Failed to read from DHT sensor!");
     return;
   }
 
   float hif = dht.computeHeatIndex(f, h);
   float hic = dht.computeHeatIndex(t, h, false);
 
-  Serial.print("Humidity: ");
-  Serial.print(h);
-  Serial.print(" %\t");
-  Serial.print("Temperature: ");
-  Serial.print(t);
-  Serial.print(" *C ");
-  Serial.print(f);
-  Serial.print(" *F\t");
-  Serial.print("Heat index: ");
-  Serial.print(hic);
-  Serial.print(" *C ");
-  Serial.print(hif);
-  Serial.println(" *F");
+//  printf("{\\\"temp\\\": %f", t);
+  
+// char test2[] = test.concat();
+//  delay(10000);
+    if(iter > 500){
+      Serial.print("{");
+      Serial.print("'temp': ");
+      Serial.print(t);
+      Serial.print(", ");
+      Serial.print("'hum': ");
+      Serial.print(h);
+      Serial.print(", ");
+      Serial.print("'hi': ");
+      Serial.print(hic);
+      Serial.println("}");
+    }
 
 //  Convert temperature and humidity to an integer
   int t_int;
@@ -111,11 +116,6 @@ void loop() {
   //  Units hum
   int EDN_h = h_int % 10;
 
-  
-  Serial.println(DES_t);
-  Serial.println(EDN_t);
-  Serial.println(DES_h);
-  Serial.println(EDN_h);
 
 //  Digits are on with LOW
 //  Segments are on with HIGH
@@ -418,4 +418,6 @@ void loop() {
   digitalWrite(pinG, HIGH);
 
   delay(5);
+
+  iter = iter + 1;
 }
