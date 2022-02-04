@@ -1,4 +1,5 @@
 const SerialPort = require("serialport");
+const fetch = require("node-fetch");
 const Readline = require("@serialport/parser-readline");
 
 const port = new SerialPort("/dev/ttyUSB0", {baudRate: 950});
@@ -10,5 +11,6 @@ port.on("open", () => {
 });
 
 parser.on('data', data => {
-    console.log("got sentance from arduino:", data);
+    const parsedData = JSON.parse(data);
+    console.log("got sentance from arduino:", parsedData);
 });
