@@ -15,6 +15,7 @@
 <br>
 <a href="https://learn.adafruit.com/dht">DHT temperature-humidity sensor</a>
 <br>
+<br>
 <img center src="https://hackster.imgix.net/uploads/attachments/267217/4_digit_7_segment_display_connections_0XniW7ckOR.jpg?auto=compress%2Cformat&w=900&h=675&fit=min">
 <br>
 <br>
