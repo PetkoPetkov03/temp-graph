@@ -10,16 +10,20 @@ port.on("open", () => {
     console.log("serial port open");
 });
 
+const fetchFunc = (jsonData) => {
+    fetch('http://localhost:8000/sender-info/save', {
+     method: 'POST',
+     body: JSON.stringify(jsonData),
+     headers: { 'Content-Type': 'application/json' }
+    });
+}
+
 parser.on('data', async(data) => {
     const stringifiedData = data.toString();
     const fixedData = stringifiedData.replaceAll("'", "\"");
     const pureData = fixedData.replaceAll("\r"&&"\n", "").toString();
     const jsonData = JSON.parse(pureData);
     
-    fetch('http://localhost:8000/sender-info/save', {
-     method: 'POST',
-     body: JSON.stringify(jsonData),
-     headers: { 'Content-Type': 'application/json' }
-    })
+    fetchFunc(jsonData);
     console.log(jsonData);
 });
