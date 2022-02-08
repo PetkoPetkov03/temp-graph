@@ -6,7 +6,6 @@ const Info = require("../models/temp.js");
 
 router.get("/show", async(req, res) => {
     const response = await Info.find({});
-
     res.json(response);
 });
 
