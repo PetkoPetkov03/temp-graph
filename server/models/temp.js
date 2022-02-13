@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const d = new Date();
+
 const info = new mongoose.Schema({
     temp: {
         type: Number,
@@ -13,10 +15,25 @@ const info = new mongoose.Schema({
         type: Number,
         required: true
     },
-    date: {
-        type: Date,
+    day: {
+        type: Number,
         required: true,
-        default: Date.now().toString()
+        default: d.getDate()
+    },
+    month: {
+        type: Number,
+        required: true,
+        default: d.getMonth()+1
+    },
+    minute: {
+        type: Number,
+        required: true,
+        default: d.getMinutes()
+    },
+    year: {
+        type: Number,
+         required: true,
+         default: d.getFullYear()
     }
 });
 

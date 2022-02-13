@@ -27,10 +27,9 @@ ChartJS.register(
 function App() {
 
   const fetchData = async() => {
-    const response = await fetch("http://localhost:8000/sender-info/show");
+    const response = await fetch(`http://localhost:8000/sender-info/show/2022/2`);
     const parsedData = await response.json();
-    const date = new Date(parsedData[0].date);
-    console.log(date.getSeconds());
+    console.log(parsedData);
   }
 
   fetchData();

@@ -4,8 +4,10 @@ const router = express.Router();
 
 const Info = require("../models/temp.js");
 
-router.get("/show", async(req, res) => {
-    const response = await Info.find({});
+router.get("/show/:year/:month", async(req, res) => {
+    const year = req.params.year;
+    const month = req.params.month;
+    const response = await Info.find({year: year, month: month});
     res.json(response);
 });
 
