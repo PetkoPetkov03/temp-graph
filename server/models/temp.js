@@ -25,11 +25,6 @@ const info = new mongoose.Schema({
         required: true,
         default: d.getMonth()+1
     },
-    minute: {
-        type: Number,
-        required: true,
-        default: d.getMinutes()
-    },
     year: {
         type: Number,
          required: true,
