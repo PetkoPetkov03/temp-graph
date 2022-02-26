@@ -26,4 +26,7 @@
 
 ## Data-Sender
 
+Made run.sh file so i can start the script with less typing
+### !!! Beware it runs with sudo privilages
+
  # For the sender to work you need to run it with sudo previliges no more than 3 seconds after you start the contoller
