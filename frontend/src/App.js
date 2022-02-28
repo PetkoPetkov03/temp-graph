@@ -44,7 +44,7 @@ const App = () => {
 	// fetch data from server
 	const fetchData = async (year, month) => {
 		const tempData = await fetch(
-			`https://temp-app-5ko.herokuapp.com/sender-info/show/${year}/${month}`
+			`https://localhost:8000/sender-info/show/${year}/${month}`
 		);
 
 		const jsonifiedData = await tempData.json();
