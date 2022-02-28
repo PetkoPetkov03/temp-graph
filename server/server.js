@@ -1,11 +1,9 @@
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 dotenv.config();
-
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-
-const router = require("./routes/router.js");
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import router from "./routes/router.js";
 
 const app = express();
 

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const d = new Date();
 
@@ -34,4 +34,4 @@ const info = new mongoose.Schema({
 
 const Info = mongoose.model("Info", info);
 
-module.exports = Info;
+export default Info;

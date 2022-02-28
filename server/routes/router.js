@@ -1,8 +1,10 @@
-const express = require("express");
+import express from "express";
+
 
 const router = express.Router();
 
-const Info = require("../models/temp.js");
+import Info from "../models/temp.js";
+
 
 router.get("/show/:year/:month", async(req, res) => {
 	const year = req.params.year;
@@ -14,15 +16,25 @@ router.get("/show/:year/:month", async(req, res) => {
 router.post("/save", async(req, res) => {
 	const body = req.body;
 
-	const Snap = new Info({
-		temp: body.temp,
-		hum: body.hum,
-		heatIndex: body.hi,
-	});
+	const d = new Date();
+	const checkForExistingDay = await Info.findOne({day: d.getDate()});
+	
 
-	Snap.save();
-	console.log(body);
-	res.sendStatus(201);
+	if(checkForExistingDay !== null){
+		res.sendStatus(400);
+	}else{
+		const Snap = new Info({
+			temp: body.temp,
+			hum: body.hum,
+			heatIndex: body.hi,
+		});
+	
+		Snap.save();
+		console.log(body);
+		res.sendStatus(201);
+	}
+
+	
 });
 
-module.exports = router;
+export default router;
